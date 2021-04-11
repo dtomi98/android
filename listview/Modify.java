@@ -12,21 +12,12 @@ import android.widget.Toast;
 public class Modify extends AppCompatActivity {
     EditText nev, idopont, tipus, helyszin, szervezo;
     Button delete, update;
-    int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify);
-
-
-        Bundle b=getIntent().getExtras();
-        b.getInt("key");
-         String name= b.getString("nev");
-        String date=b.getString("idopont");
-        String type=b.getString("tipus");
-        String location=b.getString("helyszin");
-        String organiser= b.getString("szervezo");
+        int id=0;
         nev = (EditText)findViewById(R.id.txtNev);
         idopont = (EditText)findViewById(R.id.txtIdopont);
         tipus = (EditText)findViewById(R.id.txtTipus);
@@ -34,16 +25,16 @@ public class Modify extends AppCompatActivity {
         szervezo=(EditText)findViewById(R.id.txtSzervezo);
         update = (Button)findViewById(R.id.btnSave);
         delete=(Button)findViewById(R.id.btnDelete);
-        nev.setText(name);
-        idopont.setText(date);
-        tipus.setText(type);
-        helyszin.setText(location);
-        szervezo.setText(organiser);
+        Intent intent = getIntent();
+
+
         update.setOnClickListener(new View.OnClickListener()
 
         {
             @Override
             public void onClick(View v) {
+
+
                 String Nev = nev.getText().toString();
                 String Idopont = idopont.getText().toString();
                 String Tipus = tipus.getText().toString();

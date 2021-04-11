@@ -74,12 +74,18 @@ public class DBHandler extends SQLiteOpenHelper {
         } 
         return  eventList;
     }
+    public Cursor getItemID(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = " SELECT " + KEY_ID + " FROM " + TABLE_Events + " WHERE " + KEY_TIM + " = '" + id + "'" ;
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
     // Get User Details based on userid
     public ArrayList<HashMap<String, String>> GetEventById(String eventid){
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<HashMap<String, String>> eventList = new ArrayList<>();
         String query = "SELECT nev,idopont,tipus,helyszin,szervezo FROM "+ TABLE_Events;
-        Cursor cursor = db.query(TABLE_Events, new String[]{KEY_NAME,KEY_TIM,KEY_TYP,KEY_LOC,KEY_ORG},KEY_ID+ "=?",new String[]{String.valueOf(eventid)},null, null, KEY_TIM, null);
+        Cursor cursor = db.query(TABLE_Events, new String[]{KEY_NAME,KEY_TIM,KEY_TYP,KEY_LOC,KEY_ORG},KEY_ID+ "=?",new String[]{String.valueOf(eventid)},null, null, null);
         if (cursor.moveToNext()){
             HashMap<String,String> event = new HashMap<>();
             event.put("name",cursor.getString(cursor.getColumnIndex(KEY_NAME)));
@@ -98,7 +104,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
     // Update User Details
-    public int UpdateEventDetails(String nev,String idopont,String tipus,String helyszin,String szervezo,int id){
+    public int UpdateEventDetails(String nev,String idopont,String tipus,String helyszin,String szervezo,long id){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cVals = new ContentValues();
         cVals.put(KEY_NAME, nev);

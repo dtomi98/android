@@ -17,7 +17,7 @@ public class Record extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.events);
         nev = (EditText)findViewById(R.id.txtNev);
         idopont = (EditText)findViewById(R.id.txtIdopont);
         tipus = (EditText)findViewById(R.id.txtTipus);

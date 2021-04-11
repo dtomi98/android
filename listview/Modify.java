@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class Modify extends AppCompatActivity {
     EditText nev, idopont, tipus, helyszin, szervezo;
     Button delete, update;
-    long id;
+    int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class Modify extends AppCompatActivity {
         setContentView(R.layout.activity_modify);
 
         Bundle b=getIntent().getExtras();
-        b.getLong("id",id);
+        b.getInt("key");
          String name= b.getString("nev");
         String date=b.getString("idopont");
         String type=b.getString("tipus");
@@ -49,7 +49,7 @@ public class Modify extends AppCompatActivity {
                 String Helyszin = helyszin.getText().toString();
                 String Szervezo = szervezo.getText().toString();
                 DBHandler dbHandler = new DBHandler(Modify.this);
-                dbHandler.UpdateEventDetails(Nev,Idopont,Tipus,Helyszin,Szervezo,(int) id);
+                dbHandler.UpdateEventDetails(Nev,Idopont,Tipus,Helyszin,Szervezo,id);
                 Intent intent = new Intent(Modify.this,Events.class);
                 startActivity(intent);
 

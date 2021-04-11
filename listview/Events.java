@@ -48,12 +48,14 @@ public class Events extends AppCompatActivity {
                 String type = event.get(3);
                 String location = event.get(4);
                 String organiser = event.get(5);
-                intentu.putExtra("id", id);
-                intentu.putExtra("nev", name);
-                intentu.putExtra("idopont", date);
-                intentu.putExtra("tipus", type);
-                intentu.putExtra("hely", location);
-                intentu.putExtra("szervezo", organiser);
+                Bundle b=new Bundle();
+                b.putInt("key",(int)id);
+                b.putString("nev",name);
+                b.putString("idopont",date);
+                b.putString("tipus",type);
+                b.putString("helyszin",location);
+                b.putString("szervezo",organiser);
+
                 startActivity(intentu);
                 finish();
 

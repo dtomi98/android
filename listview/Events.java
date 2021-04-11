@@ -33,40 +33,33 @@ public class Events extends AppCompatActivity {
             eventList = db.GetEvents();
         }
         ListView lv = (ListView) findViewById(R.id.event_list);
-        ListAdapter adapter = new SimpleAdapter(this, eventList, R.layout.list_row,new String[]{"nev","idopont","tipus","Helyszin","szervezo"}, new int[]{R.id.nev, R.id.idopont, R.id.tipus,R.id.helyszin,R.id.szervezo});
+        ListAdapter adapter = new SimpleAdapter(this, eventList, R.layout.list_row,new String[]{"nev","idopont","tipus","helyszin","szervezo"}, new int[]{R.id.nev, R.id.idopont, R.id.tipus,R.id.helyszin,R.id.szervezo});
         lv.setAdapter(adapter);
-        lv.setOnItemClickListener(
-                (parent, view, position, id) -> {
-                    Cursor cursor;
-                    cursor = (Cursor) adapter.getItem(position);
-                    String name=cursor.getString(1);
-                    String date=cursor.getString(2);
-                    String type=cursor.getString(3);
-                    String location=cursor.getString(4);
-                    String organiser=cursor.getString(5);
-                    intentu=new Intent(Events.this,Modify.class);
-                    intentu.putExtra("name",name);
-                    intentu.putExtra("name",date);
-                    intentu.putExtra("name",type);
-                    intentu.putExtra("name",location);
-                    intentu.putExtra("name",organiser);
-                    startActivity(intentu);
-                    finish();
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                HashMap<String, String> event = eventList.get(position);
+
+                intentu = new Intent(Events.this, Modify.class);
+
+                String name = event.get(1);
+                String date = event.get(2);
+                String type = event.get(3);
+                String location = event.get(4);
+                String organiser = event.get(5);
+                intentu.putExtra("id", id);
+                intentu.putExtra("nev", name);
+                intentu.putExtra("idopont", date);
+                intentu.putExtra("tipus", type);
+                intentu.putExtra("hely", location);
+                intentu.putExtra("szervezo", organiser);
+                startActivity(intentu);
+                finish();
 
 
-
-
-
-
-
-
-
-
-
-
-
-                }
-        );
+            }
+        } );
 
         Button back = (Button)findViewById(R.id.btnBack);
         back.setOnClickListener(new View.OnClickListener() {

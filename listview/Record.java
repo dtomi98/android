@@ -14,7 +14,6 @@ public class Record extends AppCompatActivity {
     Button recordBtn;
     Intent intent;
 
-    long id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

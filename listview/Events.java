@@ -55,7 +55,7 @@ public class Events extends AppCompatActivity {
                 b.putString("tipus",type);
                 b.putString("helyszin",location);
                 b.putString("szervezo",organiser);
-
+                intentu.putExtras(b);
                 startActivity(intentu);
                 finish();
 

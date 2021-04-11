@@ -19,6 +19,7 @@ public class Modify extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify);
 
+
         Bundle b=getIntent().getExtras();
         b.getInt("key");
          String name= b.getString("nev");
@@ -56,6 +57,7 @@ public class Modify extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Sikeres módosítás",Toast.LENGTH_SHORT).show();
             }
         });
+
        // delete.setOnClickListener(new View.OnClickListener() {
         //  @Override
         //   public void onClick(View view) {

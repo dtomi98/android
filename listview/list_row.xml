@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dip" >
+    <TextView
+        android:id="@+id/nev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="17dp" />
+    <TextView
+        android:id="@+id/idopont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nev"
+        android:layout_marginTop="8dp"
+        android:textColor="#343434"
+        android:textSize="28dp" />
+    <TextView
+        android:id="@+id/tipus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/idopont"
+        android:layout_alignParentRight="true"
+        android:textColor="#343434"
+        android:textSize="14dp" />
+    <TextView
+        android:id="@+id/helyszin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tipus"
+        android:layout_alignParentRight="true"
+        android:textColor="#343434"
+        android:textSize="14dp" />
+    <TextView
+        android:id="@+id/szervezo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/helyszin"
+        android:layout_alignBottom="@+id/helyszin"
+        android:layout_alignParentRight="true"
+        android:textColor="#343434"
+        android:textSize="14dp" />
+</RelativeLayout>

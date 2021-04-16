@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <TextView
+        android:id="@+id/fstTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="150dp"
+        android:text="Név" />
+    <EditText
+        android:id="@+id/txtNev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:ems="10"/>
+    <TextView
+        android:id="@+id/secTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Időpont"
+        android:layout_marginLeft="100dp" />
+    <EditText
+        android:id="@+id/txtIdopont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:layout_marginLeft="100dp"
+        android:ems="10" />
+    <TextView
+        android:id="@+id/thirdTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Típus"
+        android:layout_marginLeft="100dp" />
+
+    <EditText
+        android:id="@+id/txtTipus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:ems="10" />
+    <TextView
+        android:id="@+id/locationTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:text="Helyszin" />
+    <EditText
+        android:id="@+id/txtHelyszin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:ems="10" />
+    <TextView
+        android:id="@+id/organiserTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:text="Szervező" />
+    <EditText
+        android:id="@+id/txtSzervezo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:ems="10" />
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="100dp"
+        android:text="Mentés" />
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:gravity="left"
+        android:layout_marginLeft="100dp"
+        android:text="Törlés" />
+</LinearLayout>

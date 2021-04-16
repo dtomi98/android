@@ -3,6 +3,7 @@ package com.example.listview;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +18,7 @@ public class Modify extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify);
-        int id=0;
+
         nev = (EditText)findViewById(R.id.txtNev);
         idopont = (EditText)findViewById(R.id.txtIdopont);
         tipus = (EditText)findViewById(R.id.txtTipus);
@@ -26,6 +27,19 @@ public class Modify extends AppCompatActivity {
         update = (Button)findViewById(R.id.btnSave);
         delete=(Button)findViewById(R.id.btnDelete);
         Intent intent = getIntent();
+        int id=intent.getIntExtra("id",-1);
+        DBHandler dbHandler = new DBHandler(Modify.this);
+        Cursor cursor=dbHandler.getItem(id);
+        String nevertek=cursor.getString(cursor.getColumnIndex("nev"));
+        String ido=cursor.getString(cursor.getColumnIndex("idopont"));
+        String tip=cursor.getString(cursor.getColumnIndex("tipus"));
+        String hely=cursor.getString(cursor.getColumnIndex("helyszin"));
+        String szerv=cursor.getString(cursor.getColumnIndex("szervezo"));
+        nev.setText(nevertek);
+        idopont.setText(ido);
+        tipus.setText(tip);
+        helyszin.setText(hely);
+        szervezo.setText(szerv);
 
 
         update.setOnClickListener(new View.OnClickListener()
@@ -49,14 +63,15 @@ public class Modify extends AppCompatActivity {
             }
         });
 
-       // delete.setOnClickListener(new View.OnClickListener() {
-        //  @Override
-        //   public void onClick(View view) {
-        //      DBHandler dbHandler = new DBHandler(Modify.this);
-        //     dbHandler.DeleteEvent((int) id);
-        //     Intent intent =new Intent(Modify.this,Events.class);
-        //    Toast.makeText(getApplicationContext(), "Törölve",Toast.LENGTH_SHORT).show();
-        //  }
-        //});
+        delete.setOnClickListener(new View.OnClickListener() {
+          @Override
+           public void onClick(View view) {
+              DBHandler dbHandler = new DBHandler(Modify.this);
+             dbHandler.DeleteEvent(id);
+             Intent intent =new Intent(Modify.this,Events.class);
+              startActivity(intent);
+            Toast.makeText(getApplicationContext(), "Törölve",Toast.LENGTH_SHORT).show();
+          }
+        });
     }
 }

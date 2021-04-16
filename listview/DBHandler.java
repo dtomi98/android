@@ -17,7 +17,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String KEY_TYP = "tipus";
     private static final String KEY_LOC = "helyszin";
     private static final String KEY_ORG = "szervezo";
-    private String nev;
+
 
     public DBHandler(Context context){
         super(context,DB_NAME, null, DB_VERSION);
@@ -40,7 +40,7 @@ public class DBHandler extends SQLiteOpenHelper {
         // Create tables again
         onCreate(db);
     }
-    // **** CRUD (Create, Read, Update, Delete) Operations ***** //
+
 
     // Adding new User Details
     void insertEventDetails(String nev,String idopont,String tipus,String helyszin,String szervezo){
@@ -61,10 +61,11 @@ public class DBHandler extends SQLiteOpenHelper {
     public ArrayList<HashMap<String, String>> GetEvents(){
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<HashMap<String, String>> eventList = new ArrayList<>();
-        String query = "SELECT nev,idopont,tipus,helyszin,szervezo FROM "+ TABLE_Events;
+        String query = "SELECT id,nev,idopont,tipus,helyszin,szervezo FROM "+ TABLE_Events;
         Cursor cursor = db.rawQuery(query,null);
         while (cursor.moveToNext()){
             HashMap<String,String> event = new HashMap<>();
+            event.put("id",cursor.getString(cursor.getColumnIndex(KEY_ID)));
             event.put("nev",cursor.getString(cursor.getColumnIndex(KEY_NAME)));
             event.put("idopont",cursor.getString(cursor.getColumnIndex(KEY_TIM)));
             event.put("tipus",cursor.getString(cursor.getColumnIndex(KEY_TYP)));
@@ -74,29 +75,15 @@ public class DBHandler extends SQLiteOpenHelper {
         } 
         return  eventList;
     }
-    public Cursor getItemID(String id){
+    public Cursor getItem(int id){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = " SELECT " + KEY_ID + " FROM " + TABLE_Events + " WHERE " + KEY_TIM + " = '" + id + "'" ;
+        String query = " SELECT *  FROM " + TABLE_Events + " WHERE " + KEY_ID + " = " + id  ;
         Cursor data = db.rawQuery(query, null);
+        data.moveToFirst();
         return data;
     }
-    // Get User Details based on userid
-    public ArrayList<HashMap<String, String>> GetEventById(String eventid){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ArrayList<HashMap<String, String>> eventList = new ArrayList<>();
-        String query = "SELECT nev,idopont,tipus,helyszin,szervezo FROM "+ TABLE_Events;
-        Cursor cursor = db.query(TABLE_Events, new String[]{KEY_NAME,KEY_TIM,KEY_TYP,KEY_LOC,KEY_ORG},KEY_ID+ "=?",new String[]{String.valueOf(eventid)},null, null, null);
-        if (cursor.moveToNext()){
-            HashMap<String,String> event = new HashMap<>();
-            event.put("name",cursor.getString(cursor.getColumnIndex(KEY_NAME)));
-            event.put("idopont",cursor.getString(cursor.getColumnIndex(KEY_TIM)));
-            event.put("tipus",cursor.getString(cursor.getColumnIndex(KEY_TYP)));
-            event.put("helyszin",cursor.getString(cursor.getColumnIndex(KEY_LOC)));
-            event.put("szervezo",cursor.getString(cursor.getColumnIndex(KEY_ORG)));
-            eventList.add(event);
-        }
-        return  eventList;
-    }
+
+
     // Delete User Details
     public void DeleteEvent(int eventid){
         SQLiteDatabase db = this.getWritableDatabase();
